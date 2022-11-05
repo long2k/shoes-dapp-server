@@ -11,5 +11,5 @@ RUN npm install -g nodemon
 
 COPY . .
 
-EXPOSE 3001
+EXPOSE 5500
 CMD [ "nodemon", "index.js" ]

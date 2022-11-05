@@ -7,9 +7,7 @@ services:
       context: .
       dockerfile: ./Dockerfile
     ports: 
-      - 3001:3001
-    volumes:
-      - .:/app
+      - 5500:5500
     networks:
       - dapp-network
     depends_on:
@@ -21,10 +19,13 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: 12345
+    volumes:
+      - .:/app
     ports:
       - 27012:27017
     networks:
       - dapp-network
+    
 
   mongo-express:
     container_name: mongo-express
