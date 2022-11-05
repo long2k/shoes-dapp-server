@@ -1,5 +1,3 @@
-const configDev ={
-    
+{
+    "port": 3000
 }
-
-export default configDev
