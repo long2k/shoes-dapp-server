@@ -3,12 +3,16 @@ const {signToken}  = require("../../helper/user-helper");
 
 module.exports= async( req, res )=>{
     try {
-        const {username, password, email} = req.body ;
-        if( !username || !password || !email) {
+        const {email, password, address, firstName, lastName, wallet } = req.body ;
+        if( !password || !email) {
             return res.error("Invalid Fields.")
         }
+        const checkEmail = await User.findOne({email});
+        if(checkEmail){
+            return res.error("Existed Email.")
+        }
         const newUser = new User({
-            username, password, email, isActive: true
+            email, password, address, firstName, lastName, wallet
         })
         let user = await newUser.save();
         const token = await signToken(user)
@@ -18,6 +22,6 @@ module.exports= async( req, res )=>{
         }
         
     } catch (error) {
-        console.log({loi: error})
+        console.log({"error": error})
     }
 }

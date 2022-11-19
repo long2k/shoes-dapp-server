@@ -6,24 +6,15 @@ const verifyToken  = (token) =>{
     return new Promise ((reject, resolve)=>{
         return jwt.verify(token , privateKey, (err, decode)=>{
             if (err || !decode) {
-                return resolve(null);
+                return reject(err);
             } else {
-               return  resolve(decoded);
+               return  resolve(decode);
             }
         })
     })
 }
 const signToken = (data) => {
-    return jwt.sign({user: data}, privateKey,)
-    // return new Promise ((reject, resolve)=>{
-    //     return jwt.sign({user: data} , privateKey, (err, encode)=>{
-    //         if (err || !encode) {
-    //             return resolve(null);
-    //         } else {
-    //            return resolve(encode);
-    //         }
-    //     })
-    // })
+    return jwt.sign({user: data}, privateKey)
 }
      
 

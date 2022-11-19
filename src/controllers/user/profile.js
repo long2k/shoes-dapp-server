@@ -4,14 +4,13 @@ const {signToken}  = require("../../helper/user-helper");
 
 module.exports = async( req, res )=>{
     try {
-        const {email, password} = req.body ;
-        if( !email || !password ) {
+        const {id} = req.query ;
+        if( !id) {
             return res.error("Invalid Fields.")
         }
-        const user = await User.findOne({email, password});
+        const user = await User.findOne({id});
         if(user){
-            const token =  await signToken(user);
-            return res.ok({token, user: user})
+            return res.ok({user})
         }
     } catch (error) {
         console.log(error)
