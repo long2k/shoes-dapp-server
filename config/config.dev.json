@@ -1,5 +1,5 @@
 {
-    "port": 3005,
+    "port": 4040,
     "minio": {
         "endPoint": "localhost",
         "accessKey": "shoeshopping",

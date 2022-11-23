@@ -5,7 +5,7 @@ const Router = express.Router()
 
 
 Router.post('/upload', upload.array('files', 10), require('../../controllers/upload-file/upload'));
-Router.get('/:bucket/:fn', require('../../controllers/upload-file/downloadd'))
+Router.get('/:bucket/:fn', require('../../controllers/upload-file/download'))
 
 
 module.exports = Router;

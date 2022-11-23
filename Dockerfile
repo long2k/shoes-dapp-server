@@ -1,15 +1,14 @@
-FROM node:18.7.0
-
-WORKDIR /shoeapp
+FROM node:16
 
 
-COPY package.json ./
+WORKDIR /usr/src/app
 
-RUN npm install
 
-RUN npm install -g nodemon
+COPY package*.json ./
+
+RUN npm install 
 
 COPY . .
 
-EXPOSE 5500
-CMD [ "nodemon", "index.js" ]
+EXPOSE 4040
+CMD [ "node", "server.js" ]
