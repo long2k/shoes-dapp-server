@@ -3,13 +3,14 @@ const mongoose = require('mongoose')
 
 const options = {
     useNewUrlParser: true,
-    autoIndex: true,
-    useUnifiedTopology: true
+     useUnifiedTopology: true
 }
 
-mongoose.connect('mongodb://127.0.0.1:27017/shose', options).then((res)=>{
+mongoose.connect(config.mongoUrl, options).then((res)=>{
     console.log("Connected to mongodb.")
+    console.log(config.mongoUrl)
 }).catch((err)=>{
+    console.log(config.mongoUrl)
     console.log("connect db failed:", err)
 })
 

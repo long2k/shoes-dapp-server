@@ -3,6 +3,7 @@ version: '3.8'
 services: 
   server: 
     container_name: server_node
+    restart: always
     build:
       context: .
       dockerfile: ./Dockerfile
@@ -10,19 +11,27 @@ services:
       - 4040:4040
     networks:
       - dapp-network
+    volumes:
+      - .:/usr/app/
     depends_on:
       - mongo
       
   mongo:
     image: mongo
+    container_name: mongodb
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: shopping
+    ports:
+      - '27012:27017'
+    volumes:
+      - mongodb_data_container:/data/db
     networks:
       - dapp-network
 
   mongo-express:
     image: mongo-express
+    container_name: mongo-expressdb
     ports:
       - 8081:8081
     environment:
@@ -33,18 +42,24 @@ services:
       - dapp-network
   minio:
     image: minio/minio:latest
-    container_name: experiments_minio
+    container_name: minio_storage
     ports:
       - '9000:9000'
       - '9001:9001'
     environment:
-      - MINIO_ACCESS_KEY=12345678
-      - MINIO_SECRET_KEY=password
+      - MINIO_ACCESS_KEY=admin2022
+      - MINIO_SECRET_KEY=admin2022
       - CONSOLE_ACCESS_KEY=test
       - CONSOLE_SECRET_KEY=test
     command: server --address ":9000" --console-address ":9001" /data
     networks:
       - dapp-network
+    volumes:
+      - minio_storage:/data
+volumes:
+  mongodb_data_container:
+  minio_storage:
+
 networks:
   dapp-network:
     driver: bridge
