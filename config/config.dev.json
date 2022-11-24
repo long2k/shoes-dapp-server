@@ -1,12 +1,14 @@
 {
+    "baseUrl":"http://localhost:4040",
     "port": 4040,
     "minio": {
-        "endPoint": "minio_storage",
-        "accessKey": "shoeshopping",
-        "secretKey":"shoeshopping",
+        "endPoint": "localhost",
+        "accessKey": "admin",
+        "secretKey":"password",
         "useSSL": false,
         "port": 9000
     },
     "tmp": "./tmp",
-    "mongoUrl": "mongodb://root:shopping@mongodb:27017/shoes"
+    "mongoUrl": "mongodb://127.0.0.1:27017/shoes",
+    "bucket":"dapp"
 }

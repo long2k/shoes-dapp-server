@@ -1,7 +1,11 @@
+const path = require('path');
+const {v4 : uuidv4} = require('uuid')
 const Storage = require('../../services/minio/index');
+
+
 module.exports = async(req, res)=>{
     try {
-        let files = req.files;
+        let files = req.files
         if(!files){
             return res.error('Invalid Field.')
         }
@@ -18,18 +22,20 @@ module.exports = async(req, res)=>{
 				size: uploaded.size
 			};
 		});
-        let bucket = await Storage.makeBucket(BUCKET_NAME);
+        
+        let bucket = await Storage.makeBucket(config.bucket);
         if (!bucket) {
 			return res.error('Can not make bucket.');
 		}
         let url = []
         for (let upload of uploads) {
-			let fn = await Storage.putFile(bucket, upload.fn, upload.path);
+			let fn = await Storage.putItem(bucket, upload.fn, upload.path);
             fileUrl = config.baseUrl + '/file/' + bucket + '/' + fn
             url.push(fileUrl)
         }
         return res.ok(url)
     } catch (error) {
+        console.log(error)
         return res.serverError(error)
     }
 }
