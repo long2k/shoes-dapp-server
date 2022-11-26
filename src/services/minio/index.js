@@ -3,7 +3,7 @@ const minioClient = require('./minio-cli');
 const makeBucket = (bucket)=>{
     return new Promise((resolve, reject) => {
         minioClient.makeBucket(bucket, (err)=>{
-            if (err.code != 'BucketAlreadyOwnedByYou') resolve(null);
+            if (err && err.code != 'BucketAlreadyOwnedByYou') resolve(null);
             resolve(bucket)
         })
     })

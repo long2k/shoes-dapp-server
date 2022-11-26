@@ -3,8 +3,8 @@
     "port": 4040,
     "minio": {
         "endPoint": "localhost",
-        "accessKey": "admin",
-        "secretKey":"password",
+        "accessKey": "shoeshopping",
+        "secretKey":"shoeshopping",
         "useSSL": false,
         "port": 9000
     },
