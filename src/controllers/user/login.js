@@ -1,6 +1,6 @@
 // const User = require("../../models/user.model");
 const { signToken } = require("../../helper/user-helper");
-const { keyStore, NETWORK_ID, ACCOUNT_ID, account } = require("../../near");
+const { keyStore, NETWORK_ID, ACCOUNT_ID, account, getAccount, nearConnection, setupNear } = require("../../near");
 const { PublicKey } = require("near-api-js/lib/utils");
 
 module.exports = async (req, res) => {
@@ -23,7 +23,9 @@ module.exports = async (req, res) => {
         if (!isValidSignature) return res.unauthorized();
 
         //Check public key exist
-        const accessKeys = await (await account).getAccessKeys();
+        const near = await setupNear();
+        const account = await near.account(ACCOUNT_ID);
+        const accessKeys = await account.getAccessKeys();
         const isValidPublicKey = accessKeys.some(
             (keys) => keys.public_key === publicKey
         );
