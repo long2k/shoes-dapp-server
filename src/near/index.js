@@ -18,7 +18,7 @@ myKeyStore.setKey(
     KeyPair.fromString(credentials.private_key)
 );
 
-export const connectionConfig = {
+const connectionConfig = {
     networkId: "testnet",
     keyStore: myKeyStore, // first create a key store
     nodeUrl: "https://rpc.testnet.near.org",
@@ -26,12 +26,20 @@ export const connectionConfig = {
     helperUrl: "https://helper.testnet.near.org",
     explorerUrl: "https://explorer.testnet.near.org",
 };
-export const keyStore = myKeyStore;
+const keyStore = myKeyStore;
 
-export const THREE_HUNDRED_TGAS = utils.format.parseNearAmount("0.0000000003");
-export const NO_DEPOSIT = "0";
+const THREE_HUNDRED_TGAS = utils.format.parseNearAmount("0.0000000003");
+const NO_DEPOSIT = "0";
 
-export const setupNear = async () => {
+const setupNear = async () => {
     const near = await connect(connectionConfig);
     return near;
 };
+
+module.exports = {
+    keyStore,
+    THREE_HUNDRED_TGAS,
+    NO_DEPOSIT,
+    setupNear,
+    connectionConfig
+}

@@ -1,12 +1,11 @@
-import {
-    ACCOUNT_ID,
+
+const { ACCOUNT_ID,
     NETWORK_ID,
     NO_DEPOSIT,
     setupNear,
-    THREE_HUNDRED_TGAS,
-} from ".";
+    THREE_HUNDRED_TGAS } = require('./index')
 const BN = require("bn.js");
-export const viewMethod = async ({ method, args = {} }) => {
+const viewMethod = async ({ method, args = {} }) => {
     try {
         const near = await setupNear();
         const res = await near.connection.provider.query({
@@ -22,7 +21,7 @@ export const viewMethod = async ({ method, args = {} }) => {
     }
 };
 
-export const callMethod = async ({
+const callMethod = async ({
     method,
     args = {},
     gas = THREE_HUNDRED_TGAS,
@@ -42,3 +41,9 @@ export const callMethod = async ({
         throw error;
     }
 };
+
+
+module.exports = {
+    callMethod,
+    viewMethod
+}
