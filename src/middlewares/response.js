@@ -8,7 +8,7 @@ module.exports = (req, res, next)=>{
     res.unauthorized = (message = 'Unauthorized', code = 401) => {
         return res.status(code).json({error: {code , message}})
     };
-    res.forbiddeb = (message = 'Forbidden', code = 403, detail = undefined) => {
+    res.forbidden = (message = 'Forbidden', code = 403, detail = undefined) => {
         return res.status(code).json({error: {message, code, detail}})
     };
     res.notFound = (message = 'Not Found.', code = 404, detail = undefined)=> {

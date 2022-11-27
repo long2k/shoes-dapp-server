@@ -2,12 +2,13 @@ const express = require('express')
 const  bodyParser = require('body-parser') 
 const cors = require('cors') 
 global.config = require('./config')
-
+require('dotenv').config()
 
 require('./services/storage/mongo')  
 const app = express();
 
 app.use(cors())
+app.use(express.json());
 app.use(bodyParser.urlencoded({extended: false}))
 
 
