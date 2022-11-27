@@ -9,6 +9,6 @@
         "port": 9000
     },
     "tmp": "./tmp",
-    "mongoUrl": "mongodb://127.0.0.1:27017/shoes",
+    "mongoUrl": "mongodb+srv://shopno18:shopno18@cluster0.qys1kgt.mongodb.net/shoe",
     "bucket":"dapp"
 }
