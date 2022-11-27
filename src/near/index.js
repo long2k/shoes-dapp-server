@@ -1,7 +1,7 @@
 // creates keyStore from a provided file
 // you will need to pass the location of the .json key pair
 
-const { KeyPair, keyStores, connect } = require("near-api-js");
+const { KeyPair, keyStores, connect, utils } = require("near-api-js");
 const fs = require("fs");
 const homedir = require("os").homedir();
 
@@ -18,7 +18,7 @@ myKeyStore.setKey(
     KeyPair.fromString(credentials.private_key)
 );
 
-const connectionConfig = {
+export const connectionConfig = {
     networkId: "testnet",
     keyStore: myKeyStore, // first create a key store
     nodeUrl: "https://rpc.testnet.near.org",
@@ -26,16 +26,12 @@ const connectionConfig = {
     helperUrl: "https://helper.testnet.near.org",
     explorerUrl: "https://explorer.testnet.near.org",
 };
- const account = (async () => {
-    const nearConnection = await connect(connectionConfig);
-    return await nearConnection.account(ACCOUNT_ID);
-})();
- const keyStore = myKeyStore;
+export const keyStore = myKeyStore;
 
+export const THREE_HUNDRED_TGAS = utils.format.parseNearAmount("0.0000000003");
+export const NO_DEPOSIT = "0";
 
-module.exports = {
-    account,
-    keyStore,
-    ACCOUNT_ID,
-    NETWORK_ID
-}
+export const setupNear = async () => {
+    const near = await connect(connectionConfig);
+    return near;
+};
