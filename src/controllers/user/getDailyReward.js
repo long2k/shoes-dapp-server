@@ -36,7 +36,7 @@ module.exports = async (req, res) => {
             const currentDate = getCurrentDate();
             const lastSpinDate = dateToLocalDate(user.lastSpin);
             if (currentDate === lastSpinDate) {
-                return res.error("User already spined");
+                return res.error("User received today reward");
             }
         }
         //SPIN!!
