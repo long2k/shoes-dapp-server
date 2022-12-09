@@ -1,5 +1,3 @@
-const { ObjectId } = require("mongodb");
-const { default: mongoose } = require("mongoose");
 const Product = require("../../models/product.model");
 const { getProduct } = require("../../near/interface");
 module.exports = async (req, res) => {
@@ -15,11 +13,12 @@ module.exports = async (req, res) => {
         if (product && productData) {
             return res.ok({
                 id,
+                name: product.name,
                 price: productData.data.unitPrice,
                 count: Number(productData.data.quantity),
                 discount: product.discount,
                 description: product.description,
-                image: product.img,
+                img: product.img,
             });
         }
         res.notFound();

@@ -1,7 +1,9 @@
 const express =  require("express")
 const Router = express.Router();
 
+//Get tx of account id
 Router.get('/:id', require('../../controllers/transaction/list'))
+//Admin confirm transaction
 Router.post('/:id', require('../../controllers/transaction/confirm'))
 
 module.exports = Router;

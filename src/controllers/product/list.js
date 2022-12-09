@@ -9,11 +9,12 @@ module.exports = async (req, res) => {
             if (product) {
                 return {
                     id: product.id,
+                    name: product.name,
                     count: Number(data.data.quantity),
                     price: data.data.unitPrice,
                     discount: product.discount,
                     description: product.description,
-                    image: product.img,
+                    img: product.img,
                 };
             }
             return {

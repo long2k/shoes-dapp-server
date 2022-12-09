@@ -7,7 +7,6 @@ module.exports = async (req, res) => {
             return res.error("InValid Id Field.");
         }
         const outcome = await removeProduct(id);
-        console.log(outcome);
         if (outcome.status.Failure) {
             res.error(outcome);
         }

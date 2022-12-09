@@ -1,5 +1,4 @@
 const Product = require("../../models/product.model");
-const { account } = require("../../near");
 const { addProduct } = require("../../near/interface");
 module.exports = async (req, res) => {
     try {
@@ -17,7 +16,6 @@ module.exports = async (req, res) => {
         });
         const newProduct = await product.save();
         const outcome = await addProduct(newProduct.id, Number(count), price);
-        console.log(outcome);
         //Error
         if (outcome.status.Failure) {
             Product.findByIdAndRemove(newProduct.id);
