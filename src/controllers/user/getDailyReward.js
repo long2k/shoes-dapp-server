@@ -32,7 +32,6 @@ module.exports = async (req, res) => {
         //User existed
         if (user) {
             //Check spin date
-            user.lastSpin.toDateString;
             const currentDate = getCurrentDate();
             const lastSpinDate = dateToLocalDate(user.lastSpin);
             if (currentDate === lastSpinDate) {

@@ -21,7 +21,7 @@ module.exports = async (req, res) => {
                 img: product.img,
             });
         }
-        res.notFound();
+        return res.notFound();
     } catch (error) {
         return res.serverError("error:" + error);
     }

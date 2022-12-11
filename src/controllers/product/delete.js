@@ -8,7 +8,7 @@ module.exports = async (req, res) => {
         }
         const outcome = await removeProduct(id);
         if (outcome.status.Failure) {
-            res.error(outcome);
+            return res.error(outcome);
         }
         const product = await Product.deleteOne({ id });
         if (product) {

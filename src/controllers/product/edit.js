@@ -20,7 +20,7 @@ module.exports = async (req, res) => {
             const outcome = await updateProduct(id, Number(count), price);
             console.log(outcome)
             if(outcome.status.Failure) {
-                res.error(outcome)
+                return res.error(outcome)
             }
         }
         if (product) {

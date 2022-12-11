@@ -19,7 +19,7 @@ module.exports = async (req, res) => {
         //Error
         if (outcome.status.Failure) {
             Product.findByIdAndRemove(newProduct.id);
-            res.error(outcome);
+            return res.error(outcome);
         }
         //Success
         if (newProduct) {
